@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import posthog from 'posthog-js';
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -13,7 +14,10 @@ const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(reduxThunk))
 );
-
+posthog.init(
+  'phc_oEvCwfmZhByCS5aNEhuFpG2uROQG49iDlTcXF982IEa', 
+  { api_host: 'https://app.posthog.com' }
+);
 ReactDOM.render(
   <Provider store={store}>
     <App />
