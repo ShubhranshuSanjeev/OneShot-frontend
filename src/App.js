@@ -1,4 +1,5 @@
 import React from "react";
+import posthog from 'posthog-js';
 import { Route, Router, Switch } from "react-router-dom";
 
 import { ThemeProvider } from "@material-ui/styles";
@@ -15,6 +16,11 @@ import history from "./history";
 
 function App() {
   Chart.register(ChartDataLabels);
+
+  posthog.init(
+    'phc_oEvCwfmZhByCS5aNEhuFpG2uROQG49iDlTcXF982IEa', 
+    { api_host: 'https://app.posthog.com' }
+  );
 
   return (
     <ThemeProvider theme={theme}>

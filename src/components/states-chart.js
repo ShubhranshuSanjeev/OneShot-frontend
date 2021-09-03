@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 
 import { interpolateYlGnBu } from "d3-scale-chromatic";
+import posthog from "posthog-js";
 
 const COLOR_SCALE = interpolateYlGnBu;
 
@@ -116,6 +117,10 @@ const StatesChart = ({ collegesCountByState, onClick }) => {
       height={350}
       options={chartOptions}
       getElementAtEvent={(element, event) => {
+        posthog.capture(
+          'state-chart-clicked', 
+          { state: state.labels[element[0].index] }
+        );
         onClick(state.labels[element[0].index]);
       }}
     />

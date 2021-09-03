@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import posthog from "posthog-js";
 
 import {
   Grid,
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudentDetail = ({ studentID, student, fetchStudent }) => {
+  posthog.capture('$pageview');
+
   const classes = useStyles();
 
   useEffect(() => {

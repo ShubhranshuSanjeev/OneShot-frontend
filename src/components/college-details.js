@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import posthog from "posthog-js";
 
 import {
   Grid,
@@ -55,6 +56,8 @@ const CollegeDetails = ({
   fetchSimilarColleges,
   fetchCollegeStudents,
 }) => {
+  posthog.capture('$pageview');
+  
   const classes = useStyles();
 
   useEffect(() => {

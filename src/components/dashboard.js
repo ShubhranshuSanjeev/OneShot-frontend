@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import posthog from "posthog-js";
 
 import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
 
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = ({ colleges, fetchColleges }) => {
+  posthog.capture('$pageview');
+
   const [state, setState] = useState({
     collegesAggregatedByState: {},
     collegesCountByState: {},

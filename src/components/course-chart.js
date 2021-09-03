@@ -1,3 +1,4 @@
+import posthog from "posthog-js";
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 
@@ -80,6 +81,10 @@ const CourseChart = ({ collegesCountByCourse, onClick }) => {
       height={350}
       options={chartOptions}
       getElementAtEvent={(element, event) => {
+        posthog.capture(
+          'course-chart-clicked', 
+          { courseName: state.labels[element[0].index] }
+        );
         onClick(state.labels[element[0].index]);
       }}
     />
